@@ -15,6 +15,7 @@ sharpening_kernel[1][2] = -1
 
 reading_directory = "images"
 writing_directory = "processed_images"
+writing_directory_after_thresholding = "processed_images_after_thresholding"
 
 for _ in os.listdir(reading_directory):
     car = cv2.imread(f'images/{_}', -1)
@@ -44,3 +45,7 @@ for _ in os.listdir(annotations_directory):
     final_output = pre_result[ymin_value:ymax_value, xmin_value:xmax_value]
     cv2.imwrite(f"{writing_directory}/{current_car}.png", final_output)
 
+for _ in os.listdir(reading_directory):
+    car = cv2.imread(f'processed_images/{_}', -1)
+    ret3, car = cv2.threshold(car, 190, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+    cv2.imwrite(f"{writing_directory_after_thresholding}/{_}", car)
