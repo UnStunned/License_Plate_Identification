@@ -30,7 +30,7 @@ for i in os.listdir('processed_images_after_thresholding'):
             seperated_text.remove(_)
     
     for _ in seperated_text:
-        if _ in [".", "!", "|", "<", ","]:
+        if _ in [".", "!", "|", "<", ",", "(", ")", "[", "]", "="]:
             seperated_text.remove(_)
 
     flattened_text = ''
